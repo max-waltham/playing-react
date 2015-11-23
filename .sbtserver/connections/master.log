@@ -1,0 +1,13 @@
+New log file opened at Mon Nov 23 22:28:54 JST 2015 by 30876@Nine-PC.local
+Taking next connection to: 61478
+New client attempting to connect on port: 61479-61478
+  Address = /192.168.11.9:61478
+This client on port 61479 has uuid 7ec91b57-e009-488d-aa3e-928801b82a0a configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-7ec91b57-e009-488d-aa3e-928801b82a0a
+Taking next connection to: 61478
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 30876@Nine-PC.local logs at Mon Nov 23 22:31:54 JST 2015, goodbye.
