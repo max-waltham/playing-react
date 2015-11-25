@@ -3,8 +3,6 @@ ReactDOM.render(
   document.getElementById('c1')
 );
 
-
-
 // tutorial2.js
 var CommentList = React.createClass({
   render: function() {
@@ -34,7 +32,12 @@ var CommentBox = React.createClass({
         Hello, world! I am a CommentBox.
         <h1>Comments</h1>
         <CommentList />
-        <CommentForm />
+        {
+          [1,2,3].map((a) => {
+            return <CommentForm key={a}/>;
+          })
+        }
+
       </div>
     );
   }
