@@ -8,7 +8,7 @@ import play.api.mvc.{Action, Controller}
 class MyController extends Controller {
 
   def index = Action {
-    Ok(views.html.sample("Your new application is ready."))
+    Ok(views.html.dashboard("New application."))
   }
 
 }
