@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.4.0-1",
   // "org.webjars.npm" % "bootstrap" % "3.3.6",
   "org.webjars.bower" % "adminlte" % "2.3.2",
-  // "org.webjars" % "flat-ui" % "bcaf2de95e",
+  "org.webjars" % "flat-ui" % "bcaf2de95e",
 
   "org.webjars.bower" % "react" % "0.14.3"
   // "org.webjars.npm" % "react-dom" % "0.14.2"
