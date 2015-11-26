@@ -6,13 +6,13 @@
 <head>
     <title>@title</title>
 
-    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
     <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/main.css")'>
     <link rel="shortcut icon" type="image/png" href='@routes.Assets.versioned("images/favicon.png")'>
 
-    <!-- Loading Bootstrap -->
-    <link href='@routes.Assets.versioned("lib/bootstrap/css/bootstrap.min.css")' rel="stylesheet">
-    <link href='@routes.Assets.versioned("lib/adminlte/css/adminlte.min.css")' rel="stylesheet">
+    <!-- Loading Bootstrap AdminLTE -->
+    <link href='@routes.Assets.versioned("lib/adminlte/bootstrap/css/bootstrap.min.css")' rel="stylesheet">
+    <link href='@routes.Assets.versioned("lib/adminlte/dist/css/AdminLTE.min.css")' rel="stylesheet">
+    <link href='@routes.Assets.versioned("lib/adminlte/dist/css/skins/skin-purple.min.css")' rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href='@routes.Assets.versioned("lib/flat-ui/css/flat-ui.css")' rel="stylesheet">
@@ -23,17 +23,30 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="skin-purple sidebar-mini">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class=""><b>A</b>LT</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class=""><b>Admin</b>LTE</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+        </nav>
+    </header>
     <div class="container">
         @content
     </div>
 
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))'></script>
-    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/flat-ui.min.js")'></script>
-
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+    <script type='text/javascript' src='@routes.Assets.versioned("lib/adminlte/bootstrap/js/bootstrap.min.js")'></script>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.fullPath("react", "react.js"))'></script>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.fullPath("react", "react-dom.js"))'></script>
 
