@@ -15,7 +15,8 @@ libraryDependencies ++= Seq(
   "org.webjars.bower" % "adminlte" % "2.3.2",
   "org.webjars" % "flat-ui" % "bcaf2de95e",
 
-  "org.webjars.bower" % "react" % "0.14.3"
+  "org.webjars.bower" % "react" % "0.14.3",
+  "org.webjars" % "lodash" % "3.10.1"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

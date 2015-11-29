@@ -1,7 +1,7 @@
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('c1')
-);
+//ReactDOM.render(
+//  <h1>Hello, world</h1>,
+//  document.getElementById('c1')
+//);
 
 // tutorial2.js
 let CommentList = React.createClass({
@@ -17,8 +17,8 @@ let CommentList = React.createClass({
 let CommentForm = React.createClass({
   render: function() {
     return (
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
+      <div className="box-body commentForm">
+        Hello, world I am a CommentForm.
         {this.props.key}
       </div>
     );
@@ -29,7 +29,7 @@ let CommentForm = React.createClass({
 let CommentBox = React.createClass({
   render: function() {
     return (
-      <div className="commentBox">
+      <div className="box with-border commentBox">
         Hello, world! I am a CommentBox.
         <h1>Comments</h1>
         <CommentList />
@@ -63,5 +63,5 @@ let ExampleBox = React.createClass({
   }
 });
 
-ReactDOM.render( <ExampleBox />, document.getElementById('c2'));
+//ReactDOM.render( <CommentBox />, document.getElementById('c2'));
 

@@ -27,3 +27,4 @@ target
 
 /project/.sbtserver
 /.sbtserver
+/node_modules
