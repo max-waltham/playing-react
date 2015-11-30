@@ -16,6 +16,8 @@ libraryDependencies ++= Seq(
   "org.webjars" % "flat-ui" % "bcaf2de95e",
 
   "org.webjars.bower" % "react" % "0.14.3",
+  "org.webjars.npm"   % "redux" % "3.0.4",
+  "org.webjars.npm"   % "react-redux" % "4.0.0",
   "org.webjars" % "lodash" % "3.10.1"
 )
 
