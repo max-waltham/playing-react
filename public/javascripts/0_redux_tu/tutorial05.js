@@ -1,4 +1,5 @@
-var tutorial05 = function () {
+"use strict";
+let tutorial05 = function () {
 
   var createStore = Redux.createStore
   var store_0 = createStore(() => {})
@@ -50,5 +51,4 @@ var tutorial05 = function () {
 
 }
 
-module.exports = tutorial05
 

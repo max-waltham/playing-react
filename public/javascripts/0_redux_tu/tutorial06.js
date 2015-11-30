@@ -1,5 +1,6 @@
+"use strict";
 let tutorial06 = function(){
-  var reducer_1 = function (state = {}, action = (() => {})) {
+  var reducer_1 = function (state = {}, action = {}) {
     console.log('reducer_1 was called with state', state, 'and action', action)
 
     switch (action.type) {
@@ -22,7 +23,7 @@ let tutorial06 = function(){
     }
   }
 
-  var userReducer = function (state = {}, action = (() => {})) {
+  var userReducer = function (state = {}, action = {}) {
     console.log('userReducer was called with state', state, 'and action', action)
 
     switch (action.type) {
@@ -31,7 +32,7 @@ let tutorial06 = function(){
         return state;
     }
   }
-  var itemsReducer = function (state = [], action = (() => {})) {
+  var itemsReducer = function (state = [], action = {}) {
     console.log('itemsReducer was called with state', state, 'and action', action)
 
     switch (action.type) {
@@ -52,5 +53,3 @@ let tutorial06 = function(){
   console.log('store_0 state after initialization:', store_0.getState())
 
 }
-
-module.exports = tutorial06

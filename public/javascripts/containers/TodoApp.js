@@ -7,7 +7,6 @@ var TodoApp = React.createClass({
         ok require {this.props.name}
       </div>
     )
+
   }
 });
-
-module.exports = TodoApp
