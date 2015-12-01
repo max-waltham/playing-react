@@ -8,60 +8,63 @@ let Todo = React.createClass({
     })
   },
 
-  // 親に処理を委譲する
   _onClick() {
-    console.log("_onClick", this.props.todo.id)
-    console.log("vals = ", SpeakerStore)
-    var a = SpeakerStore.dispatch(SayActionCreator('Hi ' + this.props.todo.id));
-    console.log("a = ", a)
-
+    this.props.deleteTodo(this.props.todo.id);
   },
 
   render() {
     return (
       <div>
         <span>{this.props.todo.text}</span>
-        <button onClick={this._onClick}>Say Hello!</button>
+        <button onClick={this._onClick}>Delete!</button>
       </div>
     );
   }
 
 });
 
+
 let TodoList = React.createClass({
 
   getInitialState() {
     return {
-      todos: [
-        {id:1, text:"advent calendar1"},
-        {id:2, text:"advent calendar2"},
-        {id:3, text:"advent calendar3"}
-      ]
+      todos: [      ]
     };
   },
 
   deleteTodo(id) {
+
+    SpeakerStore.dispatch(SayActionCreator('Bye ' + id));
+    let del = TodoStore.dispatch(DeleteTodo(id));
+    console.log("del = ", del)
+
     this.setState({
       todos: this.state.todos.filter((todo) => {
-        return todo.id !== id;
+        return todo.id !== del.id;
       })
     });
   },
 
-  _addButton(id) {
-
-    var a = TodoStore.dispatch(AddTodo({id:"mock", text:"added button"}));
-    console.log("this.state.todos = ", this.state.todos)
+  addTodo(id) {
+    let ret = TodoStore.dispatch(AddTodo({id:"new", text:"added button"}));
+    this.state.todos.push(ret.message)
+    console.log("this.state = ", this.state)
+    this.setState(this.state)
   },
 
   render() {
-    var todos = this.state.todos.map((todo) => {
-      return <li key={todo.id}><Todo onDelete={this.deleteTodo} todo={todo} /></li>;
+    let todos = this.state.todos.map((todo) => {
+      return (
+        <li key={todo.id}>
+          <Todo deleteTodo={this.deleteTodo} todo={todo} />
+        </li>
+      );
     });
+
     return (
       <div>
+        <button onClick={this.addTodo}>add button</button>
         <ul>{todos}</ul>
-        <button onClick={this._addButton}>add button</button>
       </div>
     );
   }

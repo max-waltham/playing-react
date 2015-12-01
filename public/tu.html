@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
-    <title>PlayingReact</title>
+    <meta charSet="utf-8" />
 
     <link rel="stylesheet" media="screen" href='/assets/stylesheets/main.css'>
     <link rel="shortcut icon" type="image/png" href='/assets/images/favicon.png'>
@@ -29,30 +28,14 @@
     <script type='text/javascript' src='/lib/redux/dist/redux.js'></script>
     <script type='text/javascript' src='/lib/react-redux/dist/react-redux.js'></script>
     <script type='text/javascript' src='/lib/lodash/lodash.js'></script>
-
-    <!-- gulp babel を使って開発時に変換すれば不要
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    -->
-
 </head>
+<body>
+<div id="app-wrapper"></div>
 
-<body class="skin-purple">
 
-<section id="app"></section>
 
-<script type="text/javascript" src='/dist/actions/SayAction.js'></script>
-<script type="text/javascript" src='/dist/actions/TodoActions.js'></script>
-
-<script type="text/javascript" src='/dist/reducers/SpeakerReducer.js'></script>
-<script type="text/javascript" src='/dist/reducers/TodoReducer.js'></script>
-
-<script type="text/javascript" src='/dist/stores/SpeakerStore.js'></script>
-<script type="text/javascript" src='/dist/stores/TodoStore.js'></script>
-
-<script type="text/javascript" src='/dist/components/TodoList.js'></script>
-
-<script type="text/javascript" src='/dist/app.js'></script>
+<script type="text/javascript" src='/dist/components/tu/TodoList2.js'></script>
+<script type="text/javascript" src='/dist/components/tu/home.js'></script>
 
 </body>
 </html>
-
