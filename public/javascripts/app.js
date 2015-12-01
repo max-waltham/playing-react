@@ -7,7 +7,6 @@ import todoApp from './reducers'
 
 
 let store = createStore(todoApp)
-let store_2 = createStore(todoApp)
 
 let rootElement = document.getElementById('root')
 
@@ -15,9 +14,6 @@ render(
   <div>
     <Provider store={store}>
       <App />
-    </Provider>
-    <Provider store={store_2}>
-        <App />
     </Provider>
   </div>,
   rootElement
