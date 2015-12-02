@@ -4,6 +4,7 @@
  */
 export const ADD_TODO = 'ADD_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
+export const GET_SOME_DATA = 'GET_SOME_DATA'
 
 
 /*
@@ -20,4 +21,8 @@ export function completeTodo(index) {
 
 export function someAct(index) {
   return { type: 'SOME_ACT', index }
+}
+
+export function getSomeData(offset, limit) {
+  return { type: GET_SOME_DATA, offset:offset, limit:limit }
 }

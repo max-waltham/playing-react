@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Todo from './Todo'
+import Table from './common/Table'
 
 export default class TodoList extends Component {
   render() {
@@ -10,16 +11,14 @@ export default class TodoList extends Component {
         <h3 className="box-title">Todo</h3>
       </div>
       <div className="box-body no-padding">
-        <table className="table table-condensed">
-          <tbody>
+        <Table rows=
           {this.props.todos.map((todo, index) =>
             <Todo {...todo}
                   key={index}
                   onClick={() => this.props.onTodoClick(index)}
                   uObj={index}/>
           )}
-          </tbody>
-        </table>
+        />
       </div>
     </div>
     )

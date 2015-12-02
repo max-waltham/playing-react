@@ -1,0 +1,94 @@
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import __ from 'immutable'
+
+
+class PageLink extends Component {
+  render() {
+    const { opened, text, nextPage, offset, limit } = this.props
+    return (
+      <li className={"paginate_button" + this.props.optClass}
+        onClick={this.props.openPage}
+        ><a href="#">{text}</a></li>
+    )
+  }
+}
+PageLink.propTypes = {
+  openPage: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  optClass: PropTypes.string.isRequired
+};
+
+export default class MyPagination extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {currentPage: props.conf.currentPage};
+  }
+
+  _handleChange(num) {
+    this.setState({currentPage: num})
+  }
+
+  render() {
+    const {dispatch, conf} = this.props
+    let maxPage = Math.ceil(conf.totalSize / conf.pageSize)
+    return (
+      <div className="">
+        <div className="dataTables_paginate paging_simple_numbers" id="">
+          <ul className="pagination">
+            <PageLink optClass={"previous" +((this.state.currentPage !== 1)? "":" disabled")}
+                      key={"previous"}
+                      text={"Previous"}
+                      openPage={() => {
+                        if(this.state.currentPage !== 1){
+                          this.props.openPage(((this.state.currentPage -2) * conf.pageSize), conf.pageSize)
+                          this._handleChange(this.state.currentPage -1)
+                        }}
+                      }
+              />
+
+            {
+            __.Range(1, maxPage+1).map( i =>
+              <PageLink optClass={(i !== this.state.currentPage ? "" : " active")}
+                        key={i}
+                        text={i.toString()}
+                        openPage={()=>{
+                          if(this.state.currentPage !== i) {
+                            this.props.openPage(((i-1) * conf.pageSize), conf.pageSize)
+                            this._handleChange(i)
+                          }
+                        }}
+                />
+
+            )
+            }
+
+            <PageLink optClass={"previous" +((this.state.currentPage !== maxPage)?"":" disabled")}
+                      key={"next"}
+                      text={"Next"}
+                      openPage={() => {
+                        if(this.state.currentPage !== maxPage){
+                          this.props.openPage(((this.state.currentPage) * conf.pageSize), conf.pageSize)
+                          this._handleChange(this.state.currentPage+1)
+                        }}
+                      }
+              />
+          </ul>
+        </div>
+      </div>
+    )
+  }
+}
+
+MyPagination.propTypes = {
+  openPage: PropTypes.func.isRequired,
+  conf: PropTypes.shape(
+    {
+      totalSize: PropTypes.number.isRequired,
+      pageSize: PropTypes.number.isRequired,
+      currentPage: PropTypes.number.isRequired
+    }
+  ).isRequired
+};
+

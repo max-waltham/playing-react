@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO } from './actions'
+import { ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from './actions'
 
 // stateについて知りたいならここを見る
-function todos(state = [], action) {
+function todos(state = [], action={}) {
 
-  console.log("state =",state, ...state)
-  console.log("action =",action)
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -15,6 +13,7 @@ function todos(state = [], action) {
           completed: false
         }
       ]
+
     case COMPLETE_TODO:
       return [
         ...state.slice(0, action.index),
@@ -29,7 +28,7 @@ function todos(state = [], action) {
   }
 }
 
-function filter(state = [], action) {
+function filter(state = [], action={}) {
   switch (action.type) {
     case 'COMPLETE_FILTER':
       return action.filter
@@ -39,10 +38,25 @@ function filter(state = [], action) {
   }
 }
 
+function dataActions(state = [], action={}) {
+  switch (action.type) {
+    case GET_SOME_DATA:
+      console.log("come here =", action)
+      return  [
+        ...state,
+        {dlData:"ダウンロードしたデータ"}
+      ]
+
+    default:
+      return ''
+  }
+}
+
 
 const todoApp = combineReducers({
   todos,
-  filter
+  filter,
+  dataActions
 })
 
 export default todoApp

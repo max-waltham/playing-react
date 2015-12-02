@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { addTodo, completeTodo, someAct } from '../actions'
+import { addTodo, completeTodo, someAct, getSomeData } from '../actions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
+import MyPagination from '../components/common/MyPagination'
 
 class App extends Component {
   render() {
@@ -12,28 +13,42 @@ class App extends Component {
     return (
 
       <div className="row">
-
         <div className="col-md-8">
           <AddTodo
             onAddClick={ text =>
               dispatch(addTodo(text))
-            } />
+            }/>
         </div>
         <div className="col-md-8">
           <TodoList
             todos={todos}
             onTodoClick={ index =>
               dispatch(completeTodo(index))
-            } />
+            }/>
+        </div>
+        <div>
+
+
+          <MyPagination openPage={(offset,limit) => {
+                        console.log(offset,limit)
+                        dispatch(getSomeData(offset,limit))
+
+                      }}
+                      conf={{
+                        totalSize: 64,
+                        pageSize: 12,
+                        currentPage: 1
+                      }}/>
         </div>
         <Footer
           filter={filter}
           onFilterChange={ nextFilter =>
             dispatch(someAct(nextFilter))
-          } />
+          }/>
       </div>
 
     )
+
   }
 }
 
@@ -51,7 +66,7 @@ App.propTypes = {
 }
 
 function selectTodos(todos, filter) {
-console.log("todos = ", todos)
+  console.log("todos = ", todos)
   switch (filter) {
     case 'SHOW_ALL':
       return todos
@@ -66,10 +81,10 @@ console.log("todos = ", todos)
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
+// reducersの
 function select(state) {
   return {
     todos: selectTodos(state.todos, state.filter),
-
     filter: state.filter
   }
 }
