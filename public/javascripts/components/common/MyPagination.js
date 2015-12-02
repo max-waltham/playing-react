@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import __ from 'immutable'
 
-
 class PageLink extends Component {
   render() {
     const { opened, text, nextPage, offset, limit } = this.props

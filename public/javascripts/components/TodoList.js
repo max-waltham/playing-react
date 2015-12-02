@@ -3,6 +3,8 @@ import Todo from './Todo'
 import Table from './common/Table'
 
 export default class TodoList extends Component {
+
+
   render() {
   console.log("TodoList props = ", this.props)
     return (
@@ -11,13 +13,14 @@ export default class TodoList extends Component {
         <h3 className="box-title">Todo</h3>
       </div>
       <div className="box-body no-padding">
-        <Table rows=
-          {this.props.todos.map((todo, index) =>
+        <Table rows={
+          this.props.todos.map((todo, index) =>
             <Todo {...todo}
                   key={index}
                   onClick={() => this.props.onTodoClick(index)}
                   uObj={index}/>
-          )}
+          )
+          }
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { addTodo, completeTodo, someAct, getSomeData } from '../actions'
+import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
@@ -29,6 +29,14 @@ class App extends Component {
         </div>
 
         <div className="col-md-8">
+        <Footer
+          filter={filter}
+          onFilterChange={ nextFilter =>
+            dispatch(changeFilter(nextFilter))
+          }/>
+        </div>
+
+        <div className="col-md-8">
           <MyPagination openPage={(offset, limit) => {
                         dispatch(getSomeData(offset, limit))
                       }}
@@ -38,11 +46,7 @@ class App extends Component {
                         currentPage: 1
                       }}/>
         </div>
-        <Footer
-          filter={filter}
-          onFilterChange={ nextFilter =>
-            dispatch(someAct(nextFilter))
-          }/>
+
       </div>
 
     )
@@ -63,27 +67,30 @@ App.propTypes = {
   ]).isRequired
 }
 
+
 function selectTodos(todos, filter) {
-  console.log("todos = ", todos)
+  console.log("filter = ", filter)
   switch (filter) {
     case 'SHOW_ALL':
       return todos
     case 'SHOW_COMPLETED':
+      console.log("test = ")
       return todos.filter(todo => todo.completed)
 
     default :
       return todos
   }
-
 }
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
 // reducersの
 function select(state) {
+  console.log("state = ", state)
   return {
     todos: selectTodos(state.todos, state.filter),
     filter: state.filter
+
   }
 }
 

@@ -11,7 +11,10 @@ export const GET_SOME_DATA = 'GET_SOME_DATA'
  * action creators
  */
 export function addTodo(text) {
-  return { type: ADD_TODO, text }
+  return {
+    type: ADD_TODO,
+    text
+  }
 }
 
 export function completeTodo(index) {
@@ -19,8 +22,8 @@ export function completeTodo(index) {
 }
 
 
-export function someAct(index) {
-  return { type: 'SOME_ACT', index }
+export function changeFilter(text) {
+  return { type: 'CHANGE_FILTER', text }
 }
 
 export function getSomeData(offset, limit) {

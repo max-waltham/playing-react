@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from './actions'
+import { ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
 
 // stateについて知りたいならここを見る
 function todos(state = [], action={}) {
@@ -15,11 +15,17 @@ function todos(state = [], action={}) {
       ]
 
     case COMPLETE_TODO:
+      console.log('onclick table row', action.index)
+      console.log("state = ", ...state)
+      var a = [
+                      ...state.slice(0, action.index),
+                       Object.assign({}, state[action.index], {completed: true }),
+                      ...state.slice(action.index + 1)
+                    ]
+                    console.log("a = ", a)
       return [
         ...state.slice(0, action.index),
-        Object.assign({}, state[action.index], {
-          completed: true
-        }),
+         Object.assign({}, state[action.index], {completed: true }),
         ...state.slice(action.index + 1)
       ]
 
@@ -29,13 +35,18 @@ function todos(state = [], action={}) {
 }
 
 function filter(state = [], action={}) {
+  console.log(action)
   switch (action.type) {
+    case 'CHANGE_FILTER':
+      return action.text
+
     case 'COMPLETE_FILTER':
       return action.filter
 
     default:
       return ''
   }
+
 }
 
 function dataActions(state = [], action={}) {
