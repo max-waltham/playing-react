@@ -1,7 +1,12 @@
 
 let Provider = Redux.Provider
 
+let store = Redux.createStore(todoApp)
+
+let rootElement = document.getElementById('app')
 ReactDOM.render(
-    <TodoList />,
-  document.getElementById("app")
-);
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
