@@ -31,49 +31,47 @@ export default class MyPagination extends Component {
   }
 
   render() {
+    const {currentPage} = this.state
     const {dispatch, conf} = this.props
     let maxPage = Math.ceil(conf.totalSize / conf.pageSize)
     return (
       <div className="">
         <div className="dataTables_paginate paging_simple_numbers" id="">
           <ul className="pagination">
-            <PageLink optClass={"previous" +((this.state.currentPage !== 1)? "":" disabled")}
+            <PageLink optClass={"previous" +(currentPage !== 1 ? "":" disabled")}
                       key={"previous"}
                       text={"Previous"}
                       openPage={() => {
-                        if(this.state.currentPage !== 1){
-                          this.props.openPage(((this.state.currentPage -2) * conf.pageSize), conf.pageSize)
-                          this._handleChange(this.state.currentPage -1)
-                        }}
-                      }
-              />
+                        if(currentPage !== 1){
+                          this.props.openPage(((currentPage -2) * conf.pageSize), conf.pageSize)
+                          this._handleChange(currentPage -1)
+                        }
+                      }}/>
 
             {
             __.Range(1, maxPage+1).map( i =>
-              <PageLink optClass={(i !== this.state.currentPage ? "" : " active")}
+              <PageLink optClass={(i !== currentPage ? "" : " active")}
                         key={i}
                         text={i.toString()}
                         openPage={()=>{
-                          if(this.state.currentPage !== i) {
+                          if(currentPage !== i) {
                             this.props.openPage(((i-1) * conf.pageSize), conf.pageSize)
                             this._handleChange(i)
                           }
-                        }}
-                />
+                        }}/>
 
             )
             }
 
-            <PageLink optClass={"previous" +((this.state.currentPage !== maxPage)?"":" disabled")}
+            <PageLink optClass={"previous" +((currentPage !== maxPage)?"":" disabled")}
                       key={"next"}
                       text={"Next"}
                       openPage={() => {
-                        if(this.state.currentPage !== maxPage){
-                          this.props.openPage(((this.state.currentPage) * conf.pageSize), conf.pageSize)
-                          this._handleChange(this.state.currentPage+1)
-                        }}
-                      }
-              />
+                        if(currentPage !== maxPage){
+                          this.props.openPage(((currentPage) * conf.pageSize), conf.pageSize)
+                          this._handleChange(currentPage+1)
+                        }
+                      }}/>
           </ul>
         </div>
       </div>

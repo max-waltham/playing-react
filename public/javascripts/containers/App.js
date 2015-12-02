@@ -19,6 +19,7 @@ class App extends Component {
               dispatch(addTodo(text))
             }/>
         </div>
+
         <div className="col-md-8">
           <TodoList
             todos={todos}
@@ -26,13 +27,10 @@ class App extends Component {
               dispatch(completeTodo(index))
             }/>
         </div>
-        <div>
 
-
-          <MyPagination openPage={(offset,limit) => {
-                        console.log(offset,limit)
-                        dispatch(getSomeData(offset,limit))
-
+        <div className="col-md-8">
+          <MyPagination openPage={(offset, limit) => {
+                        dispatch(getSomeData(offset, limit))
                       }}
                       conf={{
                         totalSize: 64,

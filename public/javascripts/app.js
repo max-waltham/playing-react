@@ -11,11 +11,11 @@ let store = createStore(todoApp)
 let rootElement = document.getElementById('root')
 
 render(
-  <div>
+
     <Provider store={store}>
       <App />
     </Provider>
-  </div>,
+  ,
   rootElement
 )
 
