@@ -7,6 +7,7 @@ export default class TodoList extends Component {
 
   render() {
   console.log("TodoList props = ", this.props)
+  console.log("TodoList state = ", this.state)
     return (
     <div className="box ">
       <div className="box-header">

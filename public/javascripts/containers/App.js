@@ -8,14 +8,36 @@ import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
 import MyPagination from '../components/common/MyPagination'
 
+var firstPopState = true
+
 class App extends Component {
 
   constructor(props) {
     super(props);
 
     console.log("state =", this.state)
+
+
+
+    window.onpopstate = function(e) {
+      if (firstPopState) {
+        firstPopState = false;
+        return;
+      }
+      var path = document.location.toString().replace(document.location.origin, '');
+      console.log("backAction=", e.state.backAction)
+      console.log(e)
+     // dispatch(e.state)
+    }.bind(this)
+
+
   }
 
+  _goAbout() {
+      history.pushState(null,"", 'about');
+      console.log(history)
+
+  }
 
 
   render() {
@@ -48,8 +70,8 @@ class App extends Component {
         </div>
 
         <div className="col-md-8">
-          <MyPagination openPage={(offset, limit) => {
-                        dispatch(getSomeData(offset, limit))
+          <MyPagination openPage={(offset, limit, pageNum) => {
+                        dispatch(getSomeData(offset, limit, pageNum))
                       }}
                       conf={{
                         totalSize: 64,
@@ -59,7 +81,7 @@ class App extends Component {
         </div>
 
         <div className="col-md-12">
-        <a href='./About'>About page, route history sample</a>
+        <a className='btn' onClick={this._goAbout} >About page, route history sample</a>
         </div>
       </div>
 

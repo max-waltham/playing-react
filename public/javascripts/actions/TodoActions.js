@@ -26,6 +26,12 @@ export function changeFilter(text) {
   return { type: 'CHANGE_FILTER', text }
 }
 
-export function getSomeData(offset, limit) {
-  return { type: GET_SOME_DATA, offset:offset, limit:limit }
+export function getSomeData(offset, limit, pageNum) {
+  return { type: GET_SOME_DATA, offset:offset, limit:limit, pageNum: pageNum }
 }
+
+
+export function backPage(pageNum) {
+  return { type: 'BACK_PAGE', page: pageNum}
+}
+

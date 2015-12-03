@@ -21,13 +21,11 @@ render(
   <Provider store={store}>
     <Router history={history}>
 
-      <Route path="index.html" component={App}>
+      <Route path="/" component={App}>
+        <Route path="about" component={About}/>
       </Route>
 
-      <Route path="index.html/about" component={About}/>
-
     </Router>
-
   </Provider>
 
   ,

@@ -12,8 +12,8 @@ export default class Table extends Component {
           </tbody>
         </table>
 
-        <MyPagination openPage={(offset, limit) => {
-                  console.log(offset, limit)
+        <MyPagination openPage={(offset, limit, pn) => {
+                  console.log(offset, limit, pn)
                 }}
               conf={{
               totalSize: 64,

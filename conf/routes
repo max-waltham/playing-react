@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET    /dynamic/                       controllers.MyController.index
+GET    /                      controllers.MyController.index
 
 
 

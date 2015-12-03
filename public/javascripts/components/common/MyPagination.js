@@ -42,8 +42,9 @@ export default class MyPagination extends Component {
                       text={"Previous"}
                       openPage={() => {
                         if(currentPage !== 1){
-                          this.props.openPage(((currentPage -2) * conf.pageSize), conf.pageSize)
-                          this._handleChange(currentPage -1)
+                          let nextPageNum = currentPage -1
+                          this.props.openPage(((currentPage -2) * conf.pageSize), conf.pageSize, nextPageNum)
+                          this._handleChange(nextPageNum)
                         }
                       }}/>
 
@@ -54,7 +55,7 @@ export default class MyPagination extends Component {
                         text={i.toString()}
                         openPage={()=>{
                           if(currentPage !== i) {
-                            this.props.openPage(((i-1) * conf.pageSize), conf.pageSize)
+                            this.props.openPage(((i-1) * conf.pageSize), conf.pageSize, i)
                             this._handleChange(i)
                           }
                         }}/>
@@ -67,8 +68,9 @@ export default class MyPagination extends Component {
                       text={"Next"}
                       openPage={() => {
                         if(currentPage !== maxPage){
-                          this.props.openPage(((currentPage) * conf.pageSize), conf.pageSize)
-                          this._handleChange(currentPage+1)
+                          let nextPageNum = currentPage +1
+                          this.props.openPage(((currentPage) * conf.pageSize), conf.pageSize, nextPageNum)
+                          this._handleChange(nextPageNum)
                         }
                       }}/>
           </ul>

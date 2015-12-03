@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
+import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
 
 // stateについて知りたいならここを見る
 function todos(state = [], action={}) {
 
   switch (action.type) {
     case ADD_TODO:
+
+      history.pushState(state, '/');
       return [
         ...state,
         {
@@ -46,7 +48,6 @@ function filter(state = [], action={}) {
     default:
       return ''
   }
-
 }
 
 function datas(state = [], action={}) {
@@ -55,7 +56,10 @@ function datas(state = [], action={}) {
       console.log("come act =", action)
       console.log("come state =", state)
 
-      history.pushState(null, '/');
+      history.pushState({
+        backAction: backPage(action.pageNum)
+      }, action.pageNum);
+      console.log("history = ", history)
       return  [
         ...state,
         {dlData:"ダウンロードしたデータ"}
@@ -67,10 +71,29 @@ function datas(state = [], action={}) {
 }
 
 
+function historyRed(state = [], action={}) {
+  switch (action.type) {
+    case 'BACK_PAGE':
+      console.log("come act =", action)
+      console.log("come state =", state)
+
+      return  [
+        ...state
+      ]
+
+    default:
+      return ''
+  }
+}
+
+
+
 const todoApp = combineReducers({
   todos,
   filter,
-  datas
+  datas,
+  historyRed
 })
+
 
 export default todoApp
