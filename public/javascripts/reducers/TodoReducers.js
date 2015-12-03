@@ -49,10 +49,13 @@ function filter(state = [], action={}) {
 
 }
 
-function dataActions(state = [], action={}) {
+function datas(state = [], action={}) {
   switch (action.type) {
     case GET_SOME_DATA:
-      console.log("come here =", action)
+      console.log("come act =", action)
+      console.log("come state =", state)
+
+      history.pushState(null, '/');
       return  [
         ...state,
         {dlData:"ダウンロードしたデータ"}
@@ -67,7 +70,7 @@ function dataActions(state = [], action={}) {
 const todoApp = combineReducers({
   todos,
   filter,
-  dataActions
+  datas
 })
 
 export default todoApp

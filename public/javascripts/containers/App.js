@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Router, Route, Link } from 'react-router'
+
 import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
@@ -7,6 +9,15 @@ import Footer from '../components/Footer'
 import MyPagination from '../components/common/MyPagination'
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    console.log("state =", this.state)
+  }
+
+
+
   render() {
     // Injected by connect() call:
     const { dispatch, todos, filter } = this.props
@@ -47,6 +58,9 @@ class App extends Component {
                       }}/>
         </div>
 
+        <div className="col-md-12">
+        <a href='./About'>About page, route history sample</a>
+        </div>
       </div>
 
     )
@@ -66,7 +80,6 @@ App.propTypes = {
     ''
   ]).isRequired
 }
-
 
 function selectTodos(todos, filter) {
   console.log("filter = ", filter)

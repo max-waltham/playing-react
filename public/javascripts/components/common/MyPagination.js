@@ -8,7 +8,7 @@ class PageLink extends Component {
     return (
       <li className={"paginate_button" + this.props.optClass}
         onClick={this.props.openPage}
-        ><a href="#">{text}</a></li>
+        ><span style={{ cursor : 'pointer' }} >{text}</span></li>
     )
   }
 }
