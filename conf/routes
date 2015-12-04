@@ -4,6 +4,7 @@
 
 # Home page
 GET    /                      controllers.MyController.index
+GET    /about                      controllers.MyController.index
 
 
 

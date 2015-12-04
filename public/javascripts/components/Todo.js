@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class Todo extends Component {
+  componentDidMount() {
+    // route components are rendered with useful information, like URL params
+    console.log("componentDidMount text=", this.props.text)
+
+  }
   render() {
     return (
 

@@ -8,26 +8,31 @@ import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
 import MyPagination from '../components/common/MyPagination'
 
-var firstPopState = true
+var firstPopState = false
 
 class App extends Component {
+
+  componentDidMount() {
+    // route components are rendered with useful information, like URL params
+    console.log("pn=",this.props.params.pn)
+
+  }
 
   constructor(props) {
     super(props);
 
+    console.log("props =", props)
     console.log("state =", this.state)
 
-
-
     window.onpopstate = function(e) {
+      console.log("e=",e)
+      console.log("backAction=", e.state.backAction)
       if (firstPopState) {
         firstPopState = false;
         return;
       }
       var path = document.location.toString().replace(document.location.origin, '');
-      console.log("backAction=", e.state.backAction)
-      console.log(e)
-     // dispatch(e.state)
+      // dispatch(e.state)
     }.bind(this)
 
 
@@ -39,10 +44,9 @@ class App extends Component {
 
   }
 
-
   render() {
     // Injected by connect() call:
-    const { dispatch, todos, filter } = this.props
+    const { dispatch, todos, filter, datas} = this.props
     return (
 
       <div className="row">
@@ -70,8 +74,11 @@ class App extends Component {
         </div>
 
         <div className="col-md-8">
-          <MyPagination openPage={(offset, limit, pageNum) => {
-                        dispatch(getSomeData(offset, limit, pageNum))
+          {datas[0]}
+        </div>
+        <div className="col-md-8">
+          <MyPagination openPage={(offset, limit, opt) => {
+                        dispatch(getSomeData(offset, limit, opt))
                       }}
                       conf={{
                         totalSize: 64,
@@ -81,7 +88,7 @@ class App extends Component {
         </div>
 
         <div className="col-md-12">
-        <a className='btn' onClick={this._goAbout} >About page, route history sample</a>
+          <a className='btn' onClick={this._goAbout} >About page, route history sample</a>
         </div>
       </div>
 
@@ -103,31 +110,13 @@ App.propTypes = {
   ]).isRequired
 }
 
-function selectTodos(todos, filter) {
-  console.log("filter = ", filter)
-  switch (filter) {
-    case 'SHOW_ALL':
-      return todos
-    case 'SHOW_COMPLETED':
-      console.log("test = ")
-      return todos.filter(todo => todo.completed)
-
-    default :
-      return todos
-  }
-}
-
-// Which props do we want to inject, given the global state?
-// Note: use https://github.com/faassen/reselect for better performance.
-// reducersの
-function select(state) {
-  console.log("state = ", state)
-  return {
-    todos: selectTodos(state.todos, state.filter),
-    filter: state.filter
-
-  }
+function copyStateToProp(state) {
+  console.log("GLOBAL FULL state =", state)
+  return state
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App)
+export default connect(copyStateToProp)(App)
+
+
+

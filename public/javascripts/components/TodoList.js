@@ -6,8 +6,6 @@ export default class TodoList extends Component {
 
 
   render() {
-  console.log("TodoList props = ", this.props)
-  console.log("TodoList state = ", this.state)
     return (
     <div className="box ">
       <div className="box-header">
@@ -29,11 +27,11 @@ export default class TodoList extends Component {
   }
 }
 
-TodoList.propTypes = {
-  onTodoClick: PropTypes.func.isRequired,
-
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired
-  }).isRequired).isRequired
-}
+//TodoList.propTypes = {
+//  onTodoClick: PropTypes.func.isRequired,
+//
+//  todos: PropTypes.arrayOf(PropTypes.shape({
+//    text: PropTypes.string.isRequired,
+//    completed: PropTypes.bool.isRequired
+//  }).isRequired).isRequired
+//}

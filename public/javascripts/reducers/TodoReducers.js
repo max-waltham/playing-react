@@ -1,48 +1,49 @@
-import { combineReducers } from 'redux'
+
 import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
 
 // stateについて知りたいならここを見る
-function todos(state = [], action={}) {
+export function todos(state = [], action={}) {
 
   switch (action.type) {
     case ADD_TODO:
-
+      console.log("todos state =", state)
       history.pushState(state, '/');
       return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ]
+          ...state,
+          {
+            text: action.text,
+            completed: false
+          }
+        ]
 
     case COMPLETE_TODO:
       console.log('onclick table row', action.index)
-      console.log("state = ", ...state)
       var a = [
-                      ...state.slice(0, action.index),
-                       Object.assign({}, state[action.index], {completed: true }),
-                      ...state.slice(action.index + 1)
-                    ]
-                    console.log("a = ", a)
-      return [
-        ...state.slice(0, action.index),
-         Object.assign({}, state[action.index], {completed: true }),
-        ...state.slice(action.index + 1)
-      ]
+                ...state.slice(0, action.index),
+                 Object.assign({}, state[action.index], {completed: true }),
+                ...state.slice(action.index + 1)
+              ]
+      console.log("a = ", a)
+      return {
+        todos: a,
+        state
+      }
 
     default:
       return state
   }
 }
 
-function filter(state = [], action={}) {
-  console.log(action)
+export function filter(state = [], action={}) {
   switch (action.type) {
     case 'CHANGE_FILTER':
+      console.log("filter state =", state)
+      console.log("filter action =", action)
       return action.text
 
     case 'COMPLETE_FILTER':
+      console.log("filter state =", state)
+      console.log("filter action =", action)
       return action.filter
 
     default:
@@ -50,20 +51,21 @@ function filter(state = [], action={}) {
   }
 }
 
-function datas(state = [], action={}) {
+export function datas(state = ['初期データ'], action = {}) {
   switch (action.type) {
     case GET_SOME_DATA:
-      console.log("come act =", action)
-      console.log("come state =", state)
 
-      history.pushState({
-        backAction: backPage(action.pageNum)
-      }, action.pageNum);
+      history.pushState(
+        { backAction: backPage(action.opt.currentPage) }
+        ,action.opt.currentPage
+        ,action.opt.nextPage
+      );
       console.log("history = ", history)
-      return  [
-        ...state,
-        {dlData:"ダウンロードしたデータ"}
-      ]
+
+      var gotData = [action.opt.nextPage +"ページ目のデータ"]
+      console.log("datas state changed =", gotData)
+
+      return gotData
 
     default:
       return ''
@@ -71,29 +73,16 @@ function datas(state = [], action={}) {
 }
 
 
-function historyRed(state = [], action={}) {
+export function historyRed(state = {}, action={}) {
   switch (action.type) {
     case 'BACK_PAGE':
-      console.log("come act =", action)
-      console.log("come state =", state)
-
-      return  [
-        ...state
-      ]
+      console.log("historyRed state =", state)
+      console.log("historyRed act =", action)
+      return state
 
     default:
-      return ''
+      return state
   }
 }
 
 
-
-const todoApp = combineReducers({
-  todos,
-  filter,
-  datas,
-  historyRed
-})
-
-
-export default todoApp
