@@ -1,5 +1,6 @@
 
 import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
+import { RECEIVE_POSTS } from '../actions/ajax'
 
 // stateについて知りたいならここを見る
 export function todos(state = [], action={}) {
@@ -67,6 +68,9 @@ export function datas(state = ['初期データ'], action = {}) {
 
       return gotData
 
+    case RECEIVE_POSTS:
+
+      return [JSON.stringify(action.data)]
     default:
       return ''
   }

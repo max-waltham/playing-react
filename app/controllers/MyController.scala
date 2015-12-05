@@ -11,4 +11,15 @@ class MyController extends Controller {
     Ok(views.html.index())
   }
 
+  def data(key: String) = Action {
+    val r = Math.random()
+    Thread.sleep(400)
+    Ok(s"""{
+         |  "data":[
+         |    {"aaa":"$key"},
+         |    {"aaa":"BBB$r"}
+         |    ]
+         |}""".stripMargin)
+  }
+
 }

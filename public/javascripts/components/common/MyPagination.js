@@ -12,6 +12,7 @@ class PageLink extends Component {
     )
   }
 }
+
 PageLink.propTypes = {
   openPage: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,

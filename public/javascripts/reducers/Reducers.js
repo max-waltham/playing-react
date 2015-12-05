@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 
+
 import {todos, filter, datas, historyRed} from './TodoReducers'
 
 
@@ -11,6 +12,8 @@ function aboutRed( state = {open:0 }, action = {}) {
       return state
   }
 }
+
+
 
 const appReducer = combineReducers({
   todos,

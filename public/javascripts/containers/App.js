@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Router, Route, Link } from 'react-router'
+import thunkMiddleware from 'redux-thunk';
 
 import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
+import { fetchGets, fetchPosts } from '../actions/ajax'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
@@ -78,7 +79,7 @@ class App extends Component {
         </div>
         <div className="col-md-8">
           <MyPagination openPage={(offset, limit, opt) => {
-                        dispatch(getSomeData(offset, limit, opt))
+                        dispatch(fetchPosts('./data/'+opt.nextPage))
                       }}
                       conf={{
                         totalSize: 64,

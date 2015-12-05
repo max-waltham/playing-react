@@ -4,9 +4,9 @@
 
 # Home page
 GET    /                      controllers.MyController.index
-GET    /about                      controllers.MyController.index
+GET    /about                 controllers.MyController.index
 
-
+POST   /data/:key             controllers.MyController.data(key: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
