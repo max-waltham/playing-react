@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Link, State } from 'react-router';
+
 import thunkMiddleware from 'redux-thunk';
 
 import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
@@ -54,7 +56,7 @@ class App extends Component {
         <div className="col-md-8">
           <AddTodo
             onAddClick={ text =>
-              dispatch(addTodo(text))
+              dispatch(fetchPosts('./postTodo', 'text='+text))
             }/>
         </div>
 
@@ -75,11 +77,11 @@ class App extends Component {
         </div>
 
         <div className="col-md-8">
-          {datas[0]}
+          {JSON.stringify(datas)}
         </div>
         <div className="col-md-8">
           <MyPagination openPage={(offset, limit, opt) => {
-                        dispatch(fetchPosts('./data/'+opt.nextPage))
+                        dispatch(fetchGets('./data/'+opt.nextPage))
                       }}
                       conf={{
                         totalSize: 64,
@@ -89,6 +91,7 @@ class App extends Component {
         </div>
 
         <div className="col-md-12">
+          <Link to='about' className="">about</Link><br />
           <a className='btn' onClick={this._goAbout} >About page, route history sample</a>
         </div>
       </div>

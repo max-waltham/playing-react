@@ -25,22 +25,17 @@ const createStoreWithMiddleware = applyMiddleware(
 
 const store = createStoreWithMiddleware(appReducer);
 
-
 //let store = createStore(appReducer)
 
-let rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root')
 
 render(
   <Provider store={store}>
     <Router history={history}>
-
-
-      <Route path="/" component={App}>
+      <Route name='myApp'>
+        <Route path="/" component={App} />
+        <Route name="about" path='/about' component={About} />
       </Route>
-
-      <Route path="/about" component={About} />
-
-
     </Router>
   </Provider>
 

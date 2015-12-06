@@ -6,7 +6,9 @@
 GET    /                      controllers.MyController.index
 GET    /about                 controllers.MyController.index
 
-POST   /data/:key             controllers.MyController.data(key: String)
+# api
+GET   /data/:key             controllers.MyController.data(key: String)
+POST  /postTodo              controllers.MyController.postTodo
 
 
 # Map static resources from the /public folder to the /assets URL path

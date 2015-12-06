@@ -1,6 +1,5 @@
 
-import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA } from '../actions/TodoActions'
-import { RECEIVE_POSTS } from '../actions/ajax'
+import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA, REQUEST_POST_TODO, RECEIVE_POST_TODO } from '../actions/TodoActions'
 
 // stateについて知りたいならここを見る
 export function todos(state = [], action={}) {
@@ -30,6 +29,14 @@ export function todos(state = [], action={}) {
         state
       }
 
+
+    case RECEIVE_POST_TODO:
+      console.log('受け取ったデータ', action)
+      return [action.data]
+
+    case REQUEST_POST_TODO:
+      return ['Now loading...']
+
     default:
       return state
   }
@@ -52,7 +59,7 @@ export function filter(state = [], action={}) {
   }
 }
 
-export function datas(state = ['初期データ'], action = {}) {
+export function datas(state = {}, action = {}) {
   switch (action.type) {
     case GET_SOME_DATA:
 
@@ -63,16 +70,19 @@ export function datas(state = ['初期データ'], action = {}) {
       );
       console.log("history = ", history)
 
-      var gotData = [action.opt.nextPage +"ページ目のデータ"]
+      var gotData = {data: action.opt.nextPage +"ページ目のデータ"}
       console.log("datas state changed =", gotData)
 
       return gotData
 
-    case RECEIVE_POSTS:
+    case RECEIVE_POST_TODO:
+      return action.data
 
-      return [JSON.stringify(action.data)]
+    case REQUEST_POST_TODO:
+      return 'Now loading...'
+
     default:
-      return ''
+      return state
   }
 }
 
@@ -88,5 +98,6 @@ export function historyRed(state = {}, action={}) {
       return state
   }
 }
+
 
 

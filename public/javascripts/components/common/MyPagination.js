@@ -44,7 +44,8 @@ export default class MyPagination extends Component {
                       openPage={() => {
                         if(currentPage !== 1){
                           let nextPageNum = currentPage -1
-                          this.props.openPage(((currentPage -2) * conf.pageSize), conf.pageSize, {currentPage:currentPage, nextPage:nextPageNum} )
+                          this.props.openPage(
+                            ((currentPage -2) * conf.pageSize), conf.pageSize, {currentPage:currentPage, nextPage:nextPageNum} )
                           this._handleChange(nextPageNum)
                         }
                       }}/>
