@@ -1,11 +1,11 @@
 
-import { backPage, ADD_TODO, COMPLETE_TODO, GET_SOME_DATA, REQUEST_POST_TODO, RECEIVE_POST_TODO } from '../actions/TodoActions'
+import * as todoAct from '../actions/TodoActions'
 
 // stateについて知りたいならここを見る
 export function todos(state = [], action={}) {
 
   switch (action.type) {
-    case ADD_TODO:
+    case todoAct.ADD_TODO:
       console.log("todos state =", state)
       history.pushState(state, '/');
       return [
@@ -16,7 +16,7 @@ export function todos(state = [], action={}) {
           }
         ]
 
-    case COMPLETE_TODO:
+    case todoAct.COMPLETE_TODO:
       console.log('onclick table row', action.index)
       var a = [
                 ...state.slice(0, action.index),
@@ -30,13 +30,19 @@ export function todos(state = [], action={}) {
       }
 
 
-    case RECEIVE_POST_TODO:
-      console.log('受け取ったデータ', action)
-      return [action.data]
+    case todoAct.RECEIVE_POST_TODO:
+      return [
+               ...state,
+               {
+                 text: action.data,
+                 completed: false
+               }
+             ]
 
-    case REQUEST_POST_TODO:
-      return ['Now loading...']
-
+    case todoAct.REQUEST_POST_TODO:
+      console.log("post todo loading ")
+      return state
+      
     default:
       return state
   }
@@ -61,7 +67,7 @@ export function filter(state = [], action={}) {
 
 export function datas(state = {}, action = {}) {
   switch (action.type) {
-    case GET_SOME_DATA:
+    case todoAct.GET_SOME_DATA:
 
       history.pushState(
         { backAction: backPage(action.opt.currentPage) }
@@ -75,10 +81,11 @@ export function datas(state = {}, action = {}) {
 
       return gotData
 
-    case RECEIVE_POST_TODO:
+    case todoAct.RECEIVE_GET_DATA:
+      console.log("action.data = ", action.data)
       return action.data
 
-    case REQUEST_POST_TODO:
+    case todoAct.REQUEST_GET_DATA:
       return 'Now loading...'
 
     default:

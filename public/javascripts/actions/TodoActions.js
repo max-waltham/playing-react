@@ -7,6 +7,11 @@ export const ADD_TODO = 'ADD_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
 export const GET_SOME_DATA = 'GET_SOME_DATA'
 
+
+
+/********************************
+ * action creators Post to do
+ ********************************/
 export const REQUEST_POST_TODO = 'REQUEST_POST_TODO';
 function requestPostTodo(reddit) {
   return {
@@ -42,27 +47,50 @@ export function postTodo(url_, postData) {
   };
 }
 
-/////////////////////
-export function fetchGets(url_, params) {
+
+/********************************
+ * action creators Get pages
+ ********************************/
+
+export const REQUEST_GET_DATA = 'REQUEST_GET_DATA';
+function requestGetPageData(reddit) {
+  return {
+    type: REQUEST_GET_DATA,
+    reddit
+  };
+}
+
+export const RECEIVE_GET_DATA = 'RECEIVE_GET_DATA'
+function receiveGetPageData(reddit, data) {
+  return {
+    type: RECEIVE_GET_DATA,
+    reddit,
+    data: data,
+    receivedAt: Date.now()
+  };
+}
+
+export function getPageData(url_, params) {
   // トリック
   return function (dispatch) {
 
     // 処理開始をDispatch（ローディングgifなど）
-    dispatch(requestPosts(params));
+    dispatch(requestGetPageData(params));
 
            // 非同期のリクエスト
     return axios.get(url_, params)
             .then(response => response.data) // Promise が返る
             .then(data =>
               // 処理終了をDispatch（表示更新など）
-              dispatch(receivePosts(params, data))
+              dispatch(receiveGetPageData(params, data))
             );
   };
 }
 
-/*
- * action creators
- */
+
+/********************************
+ *
+ ********************************/
 export function addTodo(text) {
   return {
     type: ADD_TODO,

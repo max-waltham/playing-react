@@ -4,10 +4,11 @@ import MyPagination from '../components/common/MyPagination'
 import openAbout from '../actions/AboutActions'
 
 export default class About extends Component {
+
   componentDidMount(){
     this.props.dispatch(openAbout())
-    console.log(this.props.aboutRed.open)
   }
+
   render() {
 
     return (

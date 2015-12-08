@@ -5,7 +5,7 @@ import { Link, State } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
 
 import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
-import { fetchGets, fetchPosts } from '../actions/ajax'
+import { getPageData, postTodo } from '../actions/TodoActions'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import Footer from '../components/Footer'
@@ -56,7 +56,7 @@ class App extends Component {
         <div className="col-md-8">
           <AddTodo
             onAddClick={ text =>
-              dispatch(fetchPosts('./postTodo', 'text='+text))
+              dispatch(postTodo('./postTodo', 'text='+text))
             }/>
         </div>
 
@@ -81,7 +81,7 @@ class App extends Component {
         </div>
         <div className="col-md-8">
           <MyPagination openPage={(offset, limit, opt) => {
-                        dispatch(fetchGets('./data/'+opt.nextPage))
+                        dispatch(getPageData('./data/'+opt.nextPage))
                       }}
                       conf={{
                         totalSize: 64,
@@ -91,8 +91,7 @@ class App extends Component {
         </div>
 
         <div className="col-md-12">
-          <Link to='about' className="">about</Link><br />
-          <a className='btn' onClick={this._goAbout} >About page, route history sample</a>
+          <Link to='about' className="">about (routing & history sample)</Link><br />
         </div>
       </div>
 
