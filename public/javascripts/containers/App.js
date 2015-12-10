@@ -91,7 +91,10 @@ class App extends Component {
         </div>
 
         <div className="col-md-12">
-          <Link to='about' className="">about (routing & history sample)</Link><br />
+          <Link to='/About' className="">about (routing & history sample)</Link><br />
+        </div>
+        <div className="col-md-12">
+          <Link to='/containers/About' className="">about (routing & history sample)</Link><br />
         </div>
       </div>
 

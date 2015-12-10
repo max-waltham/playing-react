@@ -1,0 +1,16 @@
+The Router instance returned from Router.create can be passed around (or, if inside a React component, you can get it from the context object), and contains methods like transitionTo that you can use to transition to a new route.
+
+shareimprove this answer
+edited Apr 13 at 3:36
+answered Apr 13 at 1:54
+
+Michelle Tilley
+79.6k14194195
+
+Thanks for the Answer! Do you know an example how I would pass a route? – Daniel Schmidt Apr 13 at 3:46
+1
+@DanielSchmidt Did you take a look at the transitionTo documentation? It shows several examples. You'd probably do router.transitionTo('/dashboard') – Michelle Tilley Apr 13 at 3:47
+1
+There is an issue with react.router discussing about this. github.com/rackt/react-router/issues/975 This is solved by updating React to 0.13.1 and React Router to 0.13.2 – almoraleslopez Apr 15 at 19:37
+1
+the links are broken because the api documentation was removed, for reference we can be found in github.com/rackt/react-router/tree/… – individuo7 Jul 31 at 14:36

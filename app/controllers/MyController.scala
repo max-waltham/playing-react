@@ -9,7 +9,7 @@ import play.api.mvc.{Action, Controller}
  */
 class MyController extends Controller {
 
-  def index = Action {
+  def index(path: String ) = Action {
     Ok(views.html.index())
   }
 

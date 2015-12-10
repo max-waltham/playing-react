@@ -11,6 +11,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import App from './containers/App'
 import About from './containers/About'
+import Login from './containers/Login'
 
 import appReducer from './reducers/Reducers'
 
@@ -26,22 +27,32 @@ const createStoreWithMiddleware = applyMiddleware(
 const store = createStoreWithMiddleware(appReducer);
 
 //let store = createStore(appReducer)
-
-const rootElement = document.getElementById('root')
+const rootRoute = {
+  component: 'div',
+  childRoutes: [ {
+    path: '/',
+        component: App,
+    childRoutes: [
+      {path: '/About',
+       component: About},
+      require('./containers/Login')
+    ]
+  } ]
+}
 
 render(
+//  <Provider store={store}>
+//    <Router history={history}>
+//        <Route path="/" component={App} >
+//        </Route>
+//          <Route name="about" path='About' component={About} />
+//    </Router>
+//  </Provider>
+
   <Provider store={store}>
-    <Router history={history}>
-      <Route name='myApp'>
-        <Route path="/" component={App} />
-        <Route name="about" path='/about' component={About} />
-      </Route>
-    </Router>
+    <Router history={history} routes={rootRoute} />
   </Provider>
-
   ,
-  rootElement
+  document.getElementById('root')
 )
-
-
 
