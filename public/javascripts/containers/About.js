@@ -6,6 +6,11 @@ import openAbout from '../actions/AboutActions'
 export default class About extends Component {
 
   componentDidMount(){
+
+    const msg = this.props.params.msg
+
+    console.log("msg =",msg)
+
     this.props.dispatch(openAbout())
   }
 
