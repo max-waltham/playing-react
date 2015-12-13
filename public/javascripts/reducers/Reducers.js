@@ -13,14 +13,23 @@ function aboutRed( state = {open:0 }, action = {}) {
   }
 }
 
-
+function auth( state = {auth:{}}, action={}) {
+  switch (action.type) {
+    case 'LOGIN':
+      { auth: { token: 'test' || '' } }
+      return
+    default :
+      return state
+  }
+}
 
 const appReducer = combineReducers({
   todos,
   filter,
   datas,
   historyRed,
-  aboutRed
+  aboutRed,
+  auth
 })
 
 

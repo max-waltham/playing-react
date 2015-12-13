@@ -54,8 +54,6 @@ class App extends Component {
 
       <div className="row">
 
-        {this.props.children}
-
         <div className="col-md-8">
           <AddTodo
             onAddClick={ text =>

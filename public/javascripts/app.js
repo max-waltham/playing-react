@@ -9,14 +9,15 @@ import { createStore, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
-
-import Top from './containers/Top'
+import CommonTemplate from './containers/CommonTemplate'
 import App from './containers/App'
 import About from './containers/About'
 import Login from './containers/Login'
 
 import appReducer from './reducers/Reducers'
 
+import routes from './routes';
+import cookie from './utils/cookie'
 const history = createHistory()
 
 const loggerMiddleware = createLogger();
@@ -26,25 +27,15 @@ const createStoreWithMiddleware = applyMiddleware(
   loggerMiddleware // neat middleware that logs actions
 )(createStore);
 
-const store = createStoreWithMiddleware(appReducer);
+const store = createStoreWithMiddleware(appReducer,{ auth: { token: cookie.get('token') || '' } });
 
+//const store2 = createRedux( (process.env.NODE_ENV === 'production') ? window.__INITIAL_STATE__ : { auth: { token: cookie.get('token') || '' } });
 
 
 render(
 
   <Provider store={store}>
-    <Router history={history}>
-      <Route  component={Top} >
-        <Route name="app" path='/' component={App} />
-        <Route name="about" path='/About' component={About} />
-        <Route name="about" path='/About/:msg' component={About} />
-
-        <Route requireAuth>
-          <Route path="/profile" component={About} />
-        </Route>
-
-      </Route>
-    </Router>
+    <Router history={history} routes={routes(store, true)} />
   </Provider>
   //<Provider store={store}>
   //  <Router history={history} routes={rootRoute}/>

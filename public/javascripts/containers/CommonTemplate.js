@@ -62,8 +62,56 @@ class Top extends Component {
     // Injected by connect() call:
     const { dispatch, todos, filter, datas} = this.props
     return (
-        this.props.children
+
+
+<div className="wrapper">
+  <header className="main-header">
+    <a href="../index2.html" className="logo">
+      <span className="logo-mini"><b>A</b>LT</span>
+      <span className="logo-lg"><b>Admin</b>LTE</span>
+    </a>
+    <nav className="navbar navbar-static-top" role="navigation">
+      <a href="#" className="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span className="sr-only">Toggle navigation</span>
+      </a>
+
+      <div className="navbar-custom-menu">
+        <ul className="nav navbar-nav">
+          <li><a href="http://almsaeedstudio.com">Almsaeed Studio</a></li>
+          <li><a href="http://almsaeedstudio.com/premium">Premium Templates</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <aside className="main-sidebar">
+    <div className="slimScrollDiv" >
+      <div className="sidebar" id="scrollspy" >
+        <ul className="nav sidebar-menu">
+          <li className="header">TABLE OF CONTENTS</li>
+          <li><a href="#faq"><i className="fa fa-circle-o"></i> FAQ</a></li>
+        </ul>
+      </div>
+      <div className="slimScrollRail"
+           >
+      </div>
+    </div>
+  </aside>
+  <div className="content-wrapper" >
+    <div className="content">
+        { this.props.children }
+    </div>
+  </div>
+  <footer className="main-footer">
+    <div className="pull-right hidden-xs">
+      <b>Version</b> 2.3.1
+    </div>
+    <strong>Copyright © 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+
     )
+
 
   }
 }
