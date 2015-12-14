@@ -3,7 +3,6 @@ import { combineReducers } from 'redux'
 
 import {todos, filter, datas, historyRed} from './TodoReducers'
 
-
 function aboutRed( state = {open:0 }, action = {}) {
   switch (action.type) {
     case 'OPEN':
@@ -13,11 +12,12 @@ function aboutRed( state = {open:0 }, action = {}) {
   }
 }
 
-function auth( state = {auth:{}}, action={}) {
+function auth( state = {}, action={}) {
   switch (action.type) {
-    case 'LOGIN':
-      { auth: { token: 'test' || '' } }
-      return
+    case 'LOGIN_RECEIVE_ACT':
+      console.log('LOGIN_RECEIVE_ACT', state)
+      console.log('test', action)
+      return { token: 'test' }
     default :
       return state
   }

@@ -17,6 +17,7 @@ export default class Footer extends Component {
     )
   }
 
+
   render() {
     return (
       <p>
@@ -27,7 +28,7 @@ export default class Footer extends Component {
         {this.renderFilter('SHOW_COMPLETED', 'Completed')}
         {', '}
         {this.renderFilter('', 'Active')}
-        .
+
       </p>
     )
   }

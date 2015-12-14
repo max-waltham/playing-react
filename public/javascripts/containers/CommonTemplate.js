@@ -87,8 +87,10 @@ class Top extends Component {
     <div className="slimScrollDiv" >
       <div className="sidebar" id="scrollspy" >
         <ul className="nav sidebar-menu">
-          <li className="header">TABLE OF CONTENTS</li>
-          <li><a href="#faq"><i className="fa fa-circle-o"></i> FAQ</a></li>
+          <li className="header">CONTENTS</li>
+          <li><Link to='/about' className="">about</Link><i className="fa fa-circle-o"></i></li>
+          <li><Link to='/profile' className="">profile</Link><i className="fa fa-circle-o"></i></li>
+          <li><Link to='/' className="">app</Link><i className="fa fa-circle-o"></i></li>
         </ul>
       </div>
       <div className="slimScrollRail"

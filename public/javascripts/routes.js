@@ -11,6 +11,7 @@ import CommonTemplate from './containers/CommonTemplate'
 import App from './containers/App'
 import About from './containers/About'
 import Login from './containers/Login'
+import Profile from './containers/Profile'
 import NotFound from './containers/NotFound'
 
 const routes = (
@@ -21,7 +22,7 @@ const routes = (
         <Route name="about" path='/About/:msg' component={About} />
 
         <Route requireAuth>
-          <Route path="/profile" component={About} />
+          <Route path="/profile" component={Profile} />
         </Route>
 
         <Route path="*" component={NotFound} />
@@ -38,20 +39,20 @@ function walk(routes, cb) {
 
   return routes;
 }
-function requireAuth(nextState, transition) {
-  if (!auth.loggedIn())
-    transition.to('/login', null, { nextPathname: nextState.location.pathname });
-}
+
 export default (store, client) => {
   return walk(Route.createRouteFromReactElement(routes), route => {
     route.onEnter = (nextState, transition) => {
       console.log(nextState)
-      console.log(transition)
-      const loggedIn = !!store.getState().auth.token;
+      console.log("store.getState()",store.getState())
+
+      const loggedIn = store.getState().auth.token === 'test';
+
       if (route.requireAuth && !loggedIn) {
         transition( { nextPathname: nextState.location.pathname }, '/login');
       } else if (client) {
-        store;
+        console.log(store, client)
+        store
       }
     };
   });
