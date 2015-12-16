@@ -1,20 +1,21 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 export default class Footer extends Component {
 
   renderFilter(filter, name) {
     if (filter === this.props.filter) {
-      return name
+      return name;
     }
 
     return (
-      <a href='#' onClick={e => {
-        e.preventDefault()
-        this.props.onFilterChange(filter)
-      }}>
+      <a href="#" onClick={e => {
+        e.preventDefault();
+        this.props.onFilterChange(filter);
+      }}
+      >
         {name}
       </a>
-    )
+    );
   }
 
 
@@ -30,7 +31,7 @@ export default class Footer extends Component {
         {this.renderFilter('', 'Active')}
 
       </p>
-    )
+    );
   }
 }
 
@@ -41,4 +42,4 @@ Footer.propTypes = {
     'SHOW_COMPLETED',
     ''
   ]).isRequired
-}
+};

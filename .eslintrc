@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "L": true,
+    "$": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 0,
+    "no-console": 0,
+    "react/react-in-jsx-scope": 0
+  }
+}

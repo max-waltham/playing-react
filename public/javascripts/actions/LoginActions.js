@@ -8,20 +8,21 @@ function requestLogin(reddit) {
     reddit
   };
 }
-export const LOGIN_RECEIVE_ACT = 'LOGIN_RECEIVE_ACT'
-function receiveLogin(reddit, data) {
+
+export const LOGIN_RECEIVE_ACT = 'LOGIN_RECEIVE_ACT';
+function receiveLogin(reddit, data, nextPathname) {
   return {
     type: LOGIN_RECEIVE_ACT,
     reddit,
-    data: data,
+    data,
+    nextPathname,
     receivedAt: Date.now()
   };
 }
 
-export function loginAct(params) {
+export function loginAct(params, nextPathname) {
   // トリック
-  return function (dispatch) {
-
+  return (dispatch) => {
     // 処理開始をDispatch（ローディングgifなど）
     dispatch(requestLogin(params));
 
@@ -30,7 +31,7 @@ export function loginAct(params) {
       .then(response => response.data) // Promise が返る
       .then(data =>
         // 処理終了をDispatch（表示更新など）
-        dispatch(receiveLogin(params, data))
+        dispatch(receiveLogin(params, data, nextPathname))
     );
   };
 }

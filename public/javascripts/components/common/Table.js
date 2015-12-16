@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 export default class Table extends Component {
   render() {
@@ -8,12 +8,10 @@ export default class Table extends Component {
         {this.props.rows}
         </tbody>
       </table>
-    )
+    );
   }
 }
 
-//Table.propTypes = {
-//
-//  rows: PropTypes.arrayOf(PropTypes.component.isRequired).isRequired
-//
-//}
+Table.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.component).isRequired
+};

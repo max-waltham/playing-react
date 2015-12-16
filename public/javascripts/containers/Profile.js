@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export default class Profile extends Component {
 
   constructor(props) {
     super(props);
 
-    console.log("props =", props)
-    console.log("state =", this.state)
+    console.log('constructor state =', this.state);
   }
-  render() {
 
-    console.log("stState()",this)
+  render() {
+    console.log('stState', this);
+    console.log('props =', this.props);
     return (
       <div className="box">
 
@@ -23,11 +23,9 @@ export default class Profile extends Component {
           </tbody>
         </table>
 
-
       </div>
-    )
+    );
   }
 }
 
-
-export default connect(state => state)(Profile)
+export default connect(state => state)(Profile);

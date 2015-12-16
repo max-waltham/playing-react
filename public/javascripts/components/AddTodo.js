@@ -1,6 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 export default class AddTodo extends Component {
+
+  handleClick(e) {
+    console.log('e =', e);
+    const node = this.refs.input;
+    const text = node.value.trim();
+    this.props.onAddClick(text);
+    node.value = '';
+  }
+
   render() {
     return (
 
@@ -9,24 +18,17 @@ export default class AddTodo extends Component {
         <h3 className="box-title">Todo Example</h3>
       </div>
       <div className="box-body">
-        <input  className='form-control' type='text' ref='input' />
-        <button className='btn btn-primary' onClick={(e) => this.handleClick(e)}>
+        <input className="form-control" type="text" ref="input" />
+        <button className="btn btn-primary" onClick={(e) => this.handleClick(e)}>
           Add
         </button>
       </div>
     </div>
 
-    )
-  }
-
-  handleClick(e) {
-    const node = this.refs.input
-    const text = node.value.trim()
-    this.props.onAddClick(text)
-    node.value = ''
+    );
   }
 }
 
 AddTodo.propTypes = {
   onAddClick: PropTypes.func.isRequired
-}
+};

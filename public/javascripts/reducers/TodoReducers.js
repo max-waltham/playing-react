@@ -1,67 +1,65 @@
-
-import * as todoAct from '../actions/TodoActions'
+import * as todoAct from '../actions/TodoActions';
 
 // stateについて知りたいならここを見る
-export function todos(state = [], action={}) {
-
+export function todos(state = [], action = {}) {
   switch (action.type) {
     case todoAct.ADD_TODO:
-      console.log("todos state =", state)
+      console.log('todos state =', state);
       history.pushState(state, '/');
       return [
-          ...state,
-          {
-            text: action.text,
-            completed: false
-          }
-        ]
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ];
 
     case todoAct.COMPLETE_TODO:
-      console.log('onclick table row', action.index)
-      var a = [
-                ...state.slice(0, action.index),
-                 Object.assign({}, state[action.index], {completed: true }),
-                ...state.slice(action.index + 1)
-              ]
-      console.log("a = ", a)
+      console.log('onclick table row', action.index);
+      const a = [
+        ...state.slice(0, action.index),
+        Object.assign({}, state[action.index], { completed: true }),
+        ...state.slice(action.index + 1)
+      ];
+      console.log('a = ', a);
       return {
         todos: a,
         state
-      }
+      };
 
 
     case todoAct.RECEIVE_POST_TODO:
       return [
-               ...state,
-               {
-                 text: action.data,
-                 completed: false
-               }
-             ]
+        ...state,
+        {
+          text: action.data,
+          completed: false
+        }
+      ];
 
     case todoAct.REQUEST_POST_TODO:
-      console.log("post todo loading ")
-      return state
-      
+      console.log('post todo loading ');
+      return state;
+
     default:
-      return state
+      return state;
   }
 }
 
-export function filter(state = [], action={}) {
+export function filter(state = [], action = {}) {
   switch (action.type) {
     case 'CHANGE_FILTER':
-      console.log("filter state =", state)
-      console.log("filter action =", action)
-      return action.text
+      console.log('filter state =', state);
+      console.log('filter action =', action);
+      return action.text;
 
     case 'COMPLETE_FILTER':
-      console.log("filter state =", state)
-      console.log("filter action =", action)
-      return action.filter
+      console.log('filter state =', state);
+      console.log('filter action =', action);
+      return action.filter;
 
     default:
-      return ''
+      return '';
   }
 }
 
@@ -70,41 +68,37 @@ export function datas(state = {}, action = {}) {
     case todoAct.GET_SOME_DATA:
 
       history.pushState(
-        { backAction: backPage(action.opt.currentPage) }
-        ,action.opt.currentPage
-        ,action.opt.nextPage
+        { backAction: action.opt.currentPage }
+        , action.opt.currentPage
+        , action.opt.nextPage
       );
-      console.log("history = ", history)
+      console.log('history = ', history);
 
-      var gotData = {data: action.opt.nextPage +"ページ目のデータ"}
-      console.log("datas state changed =", gotData)
+      const gotData = { data: action.opt.nextPage + 'ページ目のデータ' };
+      console.log('datas state changed =', gotData);
 
-      return gotData
+      return gotData;
 
     case todoAct.RECEIVE_GET_DATA:
-      console.log("action.data = ", action.data)
-      return action.data
+      console.log('action.data = ', action.data);
+      return action.data;
 
     case todoAct.REQUEST_GET_DATA:
-      return 'Now loading...'
+      return 'Now loading...';
 
     default:
-      return state
+      return state;
   }
 }
 
-
-export function historyRed(state = {}, action={}) {
+export function historyRed(state = {}, action = {}) {
   switch (action.type) {
     case 'BACK_PAGE':
-      console.log("historyRed state =", state)
-      console.log("historyRed act =", action)
-      return state
+      console.log('historyRed state =', state);
+      console.log('historyRed act =', action);
+      return state;
 
     default:
-      return state
+      return state;
   }
 }
-
-
-

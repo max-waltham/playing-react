@@ -1,17 +1,11 @@
-/* eslint-env browser */
 
-let cookie = {
+const cookie = {
   set({ name, value = '', path = '/', domain = '', expires = '' }) {
-
-    if (expires instanceof Date) {
-      expires = expires.toUTCString();
-    }
-
     document.cookie = [
       `${name}=${value}`,
       `path=${path}`,
       `domain=${domain}`,
-      `expires=${expires}`
+      `expires=${(expires instanceof Date) ? expires.toUTCString() : expires}`
     ].join(';');
   },
 
@@ -20,12 +14,12 @@ let cookie = {
   },
 
   get(name) {
-    var re = new RegExp(['(?:^|; )',
+    const re = new RegExp(['(?:^|; )',
       name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1'),
       '=([^;]*)'
     ].join(''));
 
-    var matches = document.cookie.match(re);
+    const matches = document.cookie.match(re);
 
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }

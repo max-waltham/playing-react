@@ -1,69 +1,30 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
-import { connect } from 'react-redux'
-import { Link, State } from 'react-router';
-
-import thunkMiddleware from 'redux-thunk';
-
-import { addTodo, completeTodo, changeFilter, getSomeData , SHOW_COMPLETED} from '../actions/TodoActions'
-import { getPageData, postTodo } from '../actions/TodoActions'
-import AddTodo from '../components/AddTodo'
-import TodoList from '../components/TodoList'
-import Footer from '../components/Footer'
-import MyPagination from '../components/common/MyPagination'
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 
 class Top extends Component {
 
-  componentDidMount() {
-    // route components are rendered with useful information, like URL params
-    console.log("pn=",this.props.params.pn)
-
-  }
-
   constructor(props) {
     super(props);
 
-    console.log("props =", props)
-    console.log("state =", this.state)
+    console.log('props =', props);
+    console.log('state =', this.state);
+  }
 
-    window.onpopstate = function(e) {
-      console.log("e=",e)
-      console.log("backAction=", e.state.backAction)
-      if (firstPopState) {
-        firstPopState = false;
-        return;
-      }
-
-      window.onpopstate = function(e) {
-        console.log("e=",e)
-        console.log("backAction=", e.state.backAction)
-        if (firstPopState) {
-          firstPopState = false;
-          return;
-        }
-        var path = document.location.toString().replace(document.location.origin, '');
-        // dispatch(e.state)
-      }.bind(this)
-      var path = document.location.toString().replace(document.location.origin, '');
-      // dispatch(e.state)
-    }.bind(this)
-
-
+  componentDidMount() {
+    // route components are rendered with useful information, like URL params
+    console.log('pn=', this.props.params.pn);
   }
 
   _goAbout() {
-    history.pushState(null,"", 'about');
-    console.log(history)
-
+    history.pushState(null, '', 'about');
+    console.log(history);
   }
 
   render() {
-    // Injected by connect() call:
-    const { dispatch, todos, filter, datas} = this.props
     return (
-
-
 <div className="wrapper">
   <header className="main-header">
     <a href="../index2.html" className="logo">
@@ -88,13 +49,12 @@ class Top extends Component {
       <div className="sidebar" id="scrollspy" >
         <ul className="nav sidebar-menu">
           <li className="header">CONTENTS</li>
-          <li><Link to='/about' className="">about</Link><i className="fa fa-circle-o"></i></li>
-          <li><Link to='/profile' className="">profile</Link><i className="fa fa-circle-o"></i></li>
-          <li><Link to='/' className="">app</Link><i className="fa fa-circle-o"></i></li>
+          <li><Link to="/about" className="">about</Link><i className="fa fa-circle-o"></i></li>
+          <li><Link to="/profile" className="">profile</Link><i className="fa fa-circle-o"></i></li>
+          <li><Link to="/" className="">app</Link><i className="fa fa-circle-o"></i></li>
         </ul>
       </div>
-      <div className="slimScrollRail"
-           >
+      <div className="slimScrollRail">
       </div>
     </div>
   </aside>
@@ -111,33 +71,19 @@ class Top extends Component {
     reserved.
   </footer>
 </div>
-
-    )
-
-
+    );
   }
 }
 
-
 Top.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired
-  })),
-  filter: PropTypes.oneOf([
-    'SHOW_ALL',
-    'SHOW_COMPLETED',
-    ''
-  ]).isRequired
-}
+  params: PropTypes.object,
+  children: PropTypes.arrayOf(PropTypes.component).isRequired
+};
 
 function copyStateToProp(state) {
-  console.log("GLOBAL FULL state =", state)
-  return state
+  console.log('GLOBAL FULL state =', state);
+  return state;
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(copyStateToProp)(Top)
-
-
-
+export default connect(copyStateToProp)(Top);
