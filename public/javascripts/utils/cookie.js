@@ -20,7 +20,6 @@ const cookie = {
     ].join(''));
 
     const matches = document.cookie.match(re);
-
     return matches ? decodeURIComponent(matches[1]) : undefined;
   }
 };

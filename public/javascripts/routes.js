@@ -1,12 +1,13 @@
 
 import { Route } from 'react-router';
 import React from 'react';
-import CommonTemplate from './containers/CommonTemplate';
-import App from './containers/App';
-import About from './containers/About';
-import Login from './containers/Login';
-import Profile from './containers/Profile';
-import NotFound from './containers/NotFound';
+import CommonTemplate from './Components/CommonTemplate';
+import App from './Components/App';
+import About from './Components/About/About';
+import Login from './Components/Login/Login';
+import TodoList from './Components/TodoList/TodoList';
+import Profile from './Components/Profile/Profile';
+import NotFound from './Components/NotFound';
 
 const routes = (
   <Route component={CommonTemplate}>
