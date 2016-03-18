@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
-import { loginAct } from '../actions/LoginActions';
+import { loginAct } from '../../actions/LoginActions';
 
 export default class Login extends Component {
 

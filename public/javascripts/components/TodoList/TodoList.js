@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Todo from './Todo';
-import Table from './common/Table';
+import Table from '../common/Table';
 
 export default class TodoList extends Component {
 

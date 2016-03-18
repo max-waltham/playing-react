@@ -1,23 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import __ from 'immutable';
 
-class PageLink extends Component {
-  render() {
-    const { text } = this.props;
-    return (
-      <li className={'paginate_button' + this.props.optClass}
-        onClick={ this.props.openPage }
-      ><span style={{ cursor: 'pointer' }}>{text}</span></li>
-    );
-  }
-}
-
-PageLink.propTypes = {
-  openPage: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  optClass: PropTypes.string.isRequired
-};
-
 export default class MyPagination extends Component {
 
   constructor(props) {
@@ -37,10 +20,8 @@ export default class MyPagination extends Component {
       <div className="">
         <div className="dataTables_paginate paging_simple_numbers" id="">
           <ul className="pagination">
-            <PageLink optClass={'previous' + (currentPage !== 1 ? '' : ' disabled')}
-              key={'previous'}
-              text={'Previous'}
-              openPage={() => {
+            <li className={'paginate_button previous' + (currentPage !== 1 ? '' : ' disabled')}
+              onClick={() => {
                 if (currentPage !== 1) {
                   const nextPageNum = currentPage - 1;
                   this.props.openPage(
@@ -48,34 +29,34 @@ export default class MyPagination extends Component {
                   this._handleChange(nextPageNum);
                 }
               }}
-            />
-
+            >
+              <span style={{ cursor: 'pointer' }}>Previous</span>
+            </li>
             {
               __.Range(1, maxPage + 1).map(i =>
-                <PageLink optClass={(i !== currentPage ? '' : ' active')}
-                  key={i}
-                  text={i.toString()}
-                  openPage={() => {
+                <li className={'paginate_button' + (i !== currentPage) ? '' : ' active'}
+                  onClick={() => {
                     if (currentPage !== i) {
                       this.props.openPage(((i - 1) * conf.pageSize), conf.pageSize, { currentPage, nextPage: i });
                       this._handleChange(i);
                     }
                   }}
-                />
+                >
+                  <span style={{ cursor: 'pointer' }}>{ i.toString() }</span>
+                </li>
               )
             }
-
-            <PageLink optClass={'previous' + ((currentPage !== maxPage) ? '' : ' disabled')}
-              key={'next'}
-              text={'Next'}
-              openPage={() => {
+            <li className={'paginate_button next' + ((currentPage !== maxPage) ? '' : ' disabled')}
+              onClick={() => {
                 if (currentPage !== maxPage) {
                   const nextPageNum = currentPage + 1;
                   this.props.openPage(((currentPage) * conf.pageSize), conf.pageSize, { currentPage, nextPage: nextPageNum });
                   this._handleChange(nextPageNum);
                 }
               }}
-            />
+            >
+              <span style={{ cursor: 'pointer' }}>Next</span>
+            </li>
           </ul>
         </div>
       </div>

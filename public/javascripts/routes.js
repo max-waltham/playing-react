@@ -1,11 +1,10 @@
 
 import { Route } from 'react-router';
 import React from 'react';
-import CommonTemplate from './Components/CommonTemplate';
+import CommonTemplate from './Components/Layout/CommonTemplate';
 import App from './Components/App';
 import About from './Components/About/About';
 import Login from './Components/Login/Login';
-import TodoList from './Components/TodoList/TodoList';
 import Profile from './Components/Profile/Profile';
 import NotFound from './Components/NotFound';
 

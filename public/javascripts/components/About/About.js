@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import MyPagination from '../components/common/MyPagination';
-import openAbout from '../actions/AboutActions';
+import MyPagination from '../../components/common/MyPagination';
+import openAbout from '../../actions/AboutActions';
 
 export default class About extends Component {
 

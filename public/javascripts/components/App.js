@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 
 import { completeTodo, changeFilter } from '../actions/TodoActions';
 import { getPageData, postTodo } from '../actions/TodoActions';
-import AddTodo from '../components/AddTodo';
-import TodoList from '../components/TodoList';
-import Footer from '../components/Footer';
-import MyPagination from '../components/common/MyPagination';
+import AddTodo from './TodoList/AddTodo';
+import TodoList from './TodoList/TodoList';
+import Footer from './Layout/Footer';
+import MyPagination from './common/MyPagination';
 
 const firstPopState = { st: true };
 

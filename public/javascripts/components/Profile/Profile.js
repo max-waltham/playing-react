@@ -19,7 +19,6 @@ export default class Profile extends Component {
           <tbody>
           <tr><th>Profile</th></tr>
           <tr><td>v1</td></tr>
-          <tr><td></td></tr>
           </tbody>
         </table>
 
